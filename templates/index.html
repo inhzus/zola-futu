@@ -10,11 +10,13 @@
       <h2>Latest Posts</h2>
       {%- set posts_section = get_section(path="posts/_index.md") %}
       <ul class="pages-list">
-      {%- for post in posts_section.pages | sort(attribute="date") | reverse | slice(end=5) %}
+      {%- for post in posts_section.pages | sort(attribute="date") | reverse %}
+        {%- if loop.index <= 5 %}
         <li>
           <a href="{{ post.permalink | safe }}">{{ post.title }}</a>
           <small><time datetime="{{ post.date }}">{{ post.date | date(format="%b %d, %Y") }}</time></small>
         </li>
+        {%- endif %}
       {%- endfor %}
         <li><a href="{{ posts_section.permalink | safe }}">View All →</a></li>
       </ul>

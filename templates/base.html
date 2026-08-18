@@ -53,7 +53,7 @@
       <ul>
       {%- for item in config.extra.nav %}
         <li>
-        {%- if item.url is matching("https?://") %}
+        {%- if item.url is matching(pat="https?://") %}
           <a href="{{ item.url | safe }}">{{ item.name }}</a>
         {%- else %}
           {%- set item_url = get_url(path=item.url) %}
